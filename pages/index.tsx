@@ -1,7 +1,10 @@
+import Checkout from './components/Checkout';
+import styles from '../styles/Home.module.css';
+
 const HomePage = () => {
   return (
-    <div>
-      <h1>Starter</h1>
+    <div className={styles.container}>
+      <Checkout />
     </div>
   );
 };
