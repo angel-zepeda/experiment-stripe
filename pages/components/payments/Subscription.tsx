@@ -5,7 +5,7 @@ import { createSubscription } from '../../../utils/stripe';
 const Subscription = () => {
   const handleSubmit = async (e: MouseEvent) => {
     e.preventDefault();
-    createSubscription('price_1HVK4gFPKxn5Y7HWot2KU2rA');
+    createSubscription('price_1HVLQ8FPKxn5Y7HW8b0BVtnD');
   };
 
   return (
