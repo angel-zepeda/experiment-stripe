@@ -14,16 +14,15 @@
 
 .cardInput {
   width: 100%;
-  padding: 1rem;
+  padding: 0.65rem;
   border-radius: 10px;
   outline: none;
   border: 1px solid rgba(0,0,0,0.2);
   margin-top: 0.5rem;
-  margin-bottom: 0.8rem;
+  margin-bottom: 1rem;
   background: white;
   font-size: 18px;
   color: #263238;
-  text-transform: uppercase;
 }
 
 .expiryContainer {
@@ -45,7 +44,7 @@
   background: white;
   font-size: 18px;
   color: #263238;
-  text-transform: uppercase;
+
 }
 
 .inputContainer {
@@ -61,6 +60,7 @@
   font-size: 1rem;
   margin-top: 0.8rem;
   outline: none;
+  width: 100%;
 }
 
 .error {
@@ -68,4 +68,13 @@
   font-size: 15px;
   text-align: center;
   width: 100%;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  
 }

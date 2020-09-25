@@ -10,10 +10,15 @@
   "dependencies": {
     "@stripe/react-stripe-js": "^1.1.2",
     "@stripe/stripe-js": "^1.9.0",
+    "@types/stripe": "^7.13.24",
+    "@types/uuid": "^8.3.0",
+    "axios": "^0.20.0",
     "next": "9.5.3",
     "prettier": "^2.1.2",
     "react": "16.13.1",
-    "react-dom": "16.13.1"
+    "react-dom": "16.13.1",
+    "stripe": "^8.97.0",
+    "uuid": "^8.3.0"
   },
   "devDependencies": {
     "@types/node": "^14.11.2",
