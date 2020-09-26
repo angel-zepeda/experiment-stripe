@@ -14,17 +14,151 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
 
-## Learn More
+# API routes
 
-To learn more about Next.js, take a look at the following resources:
+## Customer endpoints
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Get all customers
+```bash
+  GET: /api/payments/customers?limit=
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- Create new customer
+```bash
+  POST: /api/payments/customers
 
-## Deploy on Vercel
+  [Paylod to create new customer]
+  {
+    name: string
+    email?: string
+    description?: string
+  }
+```
+- Get customer by ID
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+  GET: /api/payments/customers/:customerId
+```
+<br>
+<br>
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Product endpoints
+
+- Get all products
+```bash
+  GET: /api/payments/products
+```
+
+- Create new product
+```bash
+  POST /api/v1/payments/products/
+
+  [Payload to create a new product]
+  {
+    name: string
+  }
+```
+
+- Get product by ID
+```bash
+  GET: /api/payments/products/:productId
+```
+
+<br>
+<br>
+
+## Price endpoints
+
+- Get all prices
+```bash
+  GET: /api/payments/prices
+```
+- Create new price
+```bash
+  POST: /api/payments/prices
+
+  [Payload to create a new price]
+  {
+    unit_amount: number,
+    currency: 'usd' | 'mxn',
+    recurring: { 
+      interval:  'day' | 'week' | 'month' | 'year',
+    },
+    product: productId
+  }
+```
+- Get price by ID
+```bash
+  GET: /api/payments/prices/:priceId
+```
+
+<br>
+<br>
+
+## Subscriptions
+
+```bash
+- priceId[required]
+
+export const createSubscription = async (priceId: string) => {
+  const stripe = await stripePromise;
+  try {
+    await stripe.redirectToCheckout({
+      lineItems: [
+        {
+          price: priceId,
+          quantity: 1
+        }
+      ],
+      mode: 'subscription',
+      successUrl: 'https://example.com/success',
+      cancelUrl: 'https://example.com/cancel'
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+```
+<br>
+<br>
+
+# Customer Payment mehtods
+
+```bash
+  GET: /api/payments/payment_methods?customerId=&type=
+
+  type: 'card' | ;
+```
+
+<br>
+<br>
+
+# Donation
+
+- Create donation
+<br>
+** This endpoint will create a paymentIntent
+<br>
+** check this: https://stripe.com/docs/api/payment_intents
+
+```bash
+  POST: /api/payments/donations/
+
+ [Payload to create paymentIntent donation]
+ {
+    amount: amount * 100,  ->  *100 is to convert amount to cents
+    currency: 'usd',
+    customer: customerId,
+    metadata: { // Metadata can be blank
+      order_id: uuid
+    }
+ }
+```
+<br>
+<br>
+
+## Confirm payment Intent
+** This endpoint will confirm payement intent to apply the charge
+```bash
+  GET: /api/payments/payment_confirm?paymentIntentId=&paymentMethodId=
+```

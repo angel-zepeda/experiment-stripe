@@ -14,7 +14,7 @@ const Customer = () => {
 
   const getCustomers = useCallback(async () => {
     try {
-      const { data: { customers } } = await axios.get('/api/payments/customer?limit=3');
+      const { data: { customers } } = await axios.get('/api/payments/customer');
       const customerResponse = customers as CustomersType[];
       setCustomersList(customerResponse);
     } catch (error) {
