@@ -82,7 +82,7 @@ You can start editing the page by modifying `pages/index.js`. The page auto-upda
     unit_amount: number,
     currency: 'usd' | 'mxn',
     recurring: { 
-      interval:  'day' | 'week' | 'month' | 'year',
+      interval: 'day' | 'week' | 'month' | 'year',
     },
     product: productId
   }
@@ -123,11 +123,11 @@ export const createSubscription = async (priceId: string) => {
 <br>
 
 # Customer Payment mehtods
-
+payment methods types: https://stripe.com/docs/api/payment_methods/create#create_payment_method-type
 ```bash
   GET: /api/payments/payment_methods?customerId=&type=
 
-  type: 'card' | ;
+  type: 'card' | 'alpay' | 'giropay' | 'oxxo' ;
 ```
 
 <br>
