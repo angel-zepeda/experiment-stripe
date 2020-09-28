@@ -14,7 +14,7 @@ const Customer = () => {
 
   const getCustomers = useCallback(async () => {
     try {
-      const { data: { customers } } = await axios.get('/api/payments/customer');
+      const { data: { customers } } = await axios.get('/api/payments/customers');
       const customerResponse = customers as CustomersType[];
       setCustomersList(customerResponse);
     } catch (error) {
@@ -30,7 +30,7 @@ const Customer = () => {
     e.preventDefault();
     setIsLoading(true);
     try {
-      const { data } = await axios.post('/api/payments/customer', { customer });
+      await axios.post('/api/payments/customers', { customer }); 
       setIsLoading(false);
       getCustomers();
     } catch (error) {

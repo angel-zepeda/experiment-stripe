@@ -13,9 +13,8 @@ const Products = () => {
 
   const getProducts = useCallback(async () => {
     try {
-      const { data: { products } } = await axios.get('/api/payments/product?limit=3');
+      const { data: { products } } = await axios.get('/api/payments/products?limit=3');
       const productResponse = products as ProductsType[];
-      console.log(productResponse)
       setProductList(productResponse);
     } catch (error) {
       console.error(error.message);
@@ -34,12 +33,10 @@ const Products = () => {
     e.preventDefault();
     setIsLoading(true);
     try {
-      const { data } = await axios.post('/api/payments/product', { product });
-      console.log(data);
+      await axios.post('/api/payments/products', { product });
       setIsLoading(false);
-
     } catch (error) {
-      console.log(error.message)
+      console.error(`Error fetching products: ${error.message}`)
     }
   }
 

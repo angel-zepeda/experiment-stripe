@@ -13,10 +13,13 @@ export const Donation = () => {
 
   const handleSubmit = async (event: MouseEvent) => {
     event.preventDefault();
-    setIsLoading(true)
-    const response = await axios.post('/api/payments/donation', { amount });
+    setIsLoading(true);
+    try {
+      await axios.post('/api/payments/donations', { amount });
+    } catch (error) {
+      console.error(error.message);
+    }
     setIsLoading(false);
-    console.log("response: ", response.data);
   }
 
   return (
