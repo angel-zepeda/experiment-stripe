@@ -18,7 +18,7 @@ export const createSubscription = async (priceId: string) => {
         }
       ],
       mode: 'subscription',
-      successUrl: 'https://experiment-stripe.vercel.app/success?session_id={CHECKOUT_SESSION_ID}',
+      successUrl: 'https://experiment-stripe-ow2vboi0b.vercel.app/success?session_id={CHECKOUT_SESSION_ID}',
       cancelUrl: 'https://example.com/cancel',
     })
     .then((result) => {
