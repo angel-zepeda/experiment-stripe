@@ -22,7 +22,7 @@ export const createSubscription = async (priceId: string) => {
       cancelUrl: 'https://example.com/cancel'
     });
     if (result) {
-      console.log("Aqui se va a hacer el FOLLOW");
+      console.log("Aqui se va a hacer el FOLLOW", result);
     }
   } catch (error) {
     console.log(error);
