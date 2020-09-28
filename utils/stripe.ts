@@ -1,30 +1,27 @@
 import Stripe from 'stripe';
 import { loadStripe } from '@stripe/stripe-js';
 
-export const stripe = new Stripe('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', {
+export const stripe = new Stripe('sk_test_hXFoNLZDusCqpkxxIX8HBHE400mixX2KfE', {
   apiVersion: '2020-08-27'
 });
 
-export const stripePromise = loadStripe('pk_live_BEmo6Ye1B1y7xLOZF9dmAEMo001HAgmz8j');
+export const stripePromise = loadStripe('pk_test_i0VJrkb1Dseh0fTIu903sis7001a5I25Vd');
 
 export const createSubscription = async (priceId: string) => {
   const stripe = await stripePromise;
-  try {
-    const result = await stripe.redirectToCheckout({
+  stripe
+    .redirectToCheckout({
       lineItems: [
         {
-          price: priceId,
+          price: 'price_1HWUbZFPKxn5Y7HWXzYmlaS5',
           quantity: 1
         }
       ],
       mode: 'subscription',
-      successUrl: 'https://example.com/success',
-      cancelUrl: 'https://example.com/cancel'
+      successUrl: 'https://experiment-stripe.vercel.app/success?session_id={CHECKOUT_SESSION_ID}',
+      cancelUrl: 'https://example.com/cancel',
+    })
+    .then((result) => {
+      console.log('Aqui se va a hacer el FOLLOW', result);
     });
-    if (result) {
-      console.log("Aqui se va a hacer el FOLLOW", result);
-    }
-  } catch (error) {
-    console.log(error);
-  }
 };
